@@ -5,7 +5,7 @@
  * copyright 2020 [Daniel](https://danieljmckeown.com) and [Jessica McKeown](http://jessmckeown.com)
 
 
- #### This projects was scaffoled with [web-component-boilerplate](https://web-component-boilerplate.pacificio.com) v0.8.0
+ #### This project was scaffolded with [web-component-boilerplate](https://web-component-boilerplate.pacificio.com) v0.8.0
 
  ---
 
@@ -21,7 +21,7 @@ This project provides the following features:
 
 ## quickstart
 
-===
+
 download and build
 ===
 
@@ -30,7 +30,7 @@ download and build
 2. `npm install`
 3. `npm run build`
 
-===
+
 serve the site
 ===
 
