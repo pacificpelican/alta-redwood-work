@@ -1,11 +1,12 @@
  
  # alta-redwood-work
 
- * altaredwood.work home page
+ * [altaredwood.work](https://altaredwood.work) home page
  * copyright 2020 [Daniel](https://danieljmckeown.com) and [Jessica McKeown](http://jessmckeown.com)
 
+ ## The active branch for current live development is the `gh-pages` branch
 
- #### This projects was scaffoled with [web-component-boilerplate](https://web-component-boilerplate.pacificio.com) v0.8.0
+ #### This project was scaffolded with [web-component-boilerplate](https://web-component-boilerplate.pacificio.com) v0.8.0
 
  ---
 
