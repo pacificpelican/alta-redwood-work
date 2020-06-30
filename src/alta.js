@@ -49,12 +49,12 @@ class Alta extends Component {
               </span>
             </div>
           </div>
-          <footer>
-            copyright 2018-2019 <a href="https://altaredwood.work">altaredwood.work</a>
+          <footer id="alta-link-footer">
+            copyright 2020 <a href="https://altaredwood.work">altaredwood.work</a>
           </footer>
         </div>
           <style>
-            /* :root {
+            :root {
               --uiFonts: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
               --contentFonts: "Lato", "Open Sans", "Lucida Grande", "Ubuntu Sans", "Segoe UI", "Roboto", Helvetica, sans-serif;
               --displayFonts: "Gentona", "Baufra", Georgia, serif;
@@ -73,11 +73,15 @@ class Alta extends Component {
               padding-left: 0px;
               padding-right: 0px;
               background: white;
-            } */
+            }
             body {
               background-image: url("./static/img/redwood.jpeg");
             }
            
+            footer#alta-link-footer, footer#alta-link-footer a { 
+              color: #ebeff5;
+            }
+
             #Altaredwoodcontainer {
               border-style: none;
               width: 94vw;

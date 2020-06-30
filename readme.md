@@ -13,11 +13,7 @@
 - [Features](#features)
 - [QuickStart](#quickstart)
 - [Requirements](#requirements)
-- [Usage](#usage)
 - [Installation](#installation)
-- [Demo](#demo-app)
-
-![Baloo](./static/img/Baloo.jpg)
 
 ## features
 This project provides the following features:
@@ -50,11 +46,3 @@ serve the site
 - Check [NPM](https://www.npmjs.com/) version: `npm --version`
 - Clone the Git repo: `git clone <repo-url>`
 
-## usage
-- Use the code as a scaffold for creating a new site (for example edit app.js or create a new component to import into index.js)
-- Make sure to upload the index.html, /src directory, /static directory, and the /web_modules directory to your live site when you deploy
-- By convention, non-code assets like images can be stored in the /static directory and referenced directly
-
-## demo-app
-- For now, the best live example (built with an early version of web-component-boilerplate) is the [sf3am.com front page](https://sf3am.com)
-- Learn more about the project in [this screencast](https://www.youtube.com/watch?v=lcvIB6ryddE)
