@@ -34,8 +34,8 @@ class Alta extends Component {
 
             <div class="Partnerdiv">
               <h3 className="partnerh1">
-                <a class="Altaredwooda" href="https://pacificio.com">
-                  Dan McKeown
+                <a class="dm" href="https://danmckeown.info">Dan McKeown</a> <a class="Altaredwooda" href="https://pacificio.com">
+                   💻
                 </a>
               </h3>
               <span className="av">
@@ -49,7 +49,7 @@ class Alta extends Component {
               </span>
             </div>
           </div>
-          <footer id="alta-link-footer">
+          <footer className="link" id="alta-link-footer">
             copyright 2020 <a href="https://altaredwood.work">altaredwood.work</a>
           </footer>
         </div>
@@ -92,47 +92,55 @@ class Alta extends Component {
               -webkit-backdrop-filter: blur(10px);
             }
 
-            .Altaredwooda {
+            .Altaredwooda, a.dm {
               font-weight: bolder;
               color: white;
               text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
               text-decoration: none;
             }
 
-          .Altaredwoodimg {
-            height: auto; /* Make sure images are scaled correctly. */
-            max-width: calc(25vw + 4em);
-            border-radius: calc(3pt);
-          }
+            .Altaredwoodimg {
+              height: auto; /* Make sure images are scaled correctly. */
+              max-width: calc(25vw + 4em);
+              border-radius: calc(3pt);
+            }
 
-          .Altaredwoodimadjusted {
-            height: auto; /* Make sure images are scaled correctly. */
-            max-width: calc(27vw + 3.7em);
-            border-radius: calc(6pt);
-          }
+            .Altaredwoodimadjusted {
+              height: auto; /* Make sure images are scaled correctly. */
+              max-width: calc(27vw + 3.7em);
+              border-radius: calc(6pt);
+            }
 
-          .Partnersection {
-            display: grid;
-            grid-template-columns: 46vw 45vw;
-            overflow: hidden;
-          }
+            .Partnersection {
+              display: grid;
+              grid-template-columns: 46vw 45vw;
+              overflow: hidden;
+              font-family: var(--condensedFonts, display);
+            }
 
-          .artnerdiv {
-            border: 2px solid gray;
-            padding-left: 3vw;
-          }
+            .artnerdiv {
+              border: 2px solid gray;
+              padding-left: 3vw;
+            }
 
-          .Altaredwoodh1 {
-            font-size: 30px;
-            color: white;
-            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-          }
+            footer.link {
+              font-family: var(--uiFonts, display);
+              margin-top: calc(20vh + 5pt);
+            }
 
-          .Altaredwoodh2 {
-            font-size: 26px;
-            color: white;
-            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-          }
+            .Altaredwoodh1 {
+              font-size: 30px;
+              color: white;
+              text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+              font-family: var(--contentFonts, display);
+            }
+
+            .Altaredwoodh2 {
+              font-size: 26px;
+              color: white;
+              text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+              font-family: var(--monoFonts, display);
+            }
           </style>
       </div>
   `}
