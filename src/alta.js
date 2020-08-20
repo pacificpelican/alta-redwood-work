@@ -19,7 +19,7 @@ class Alta extends Component {
               <h3 className="partnerh1">
                 <a class="Altaredwooda" href="https://jessmckeown.com">
                   Jess McKeown
-                </div>
+                </a>
               </h3>
               <span className="av">
                 <a class="Altaredwooda" href="https://jessmckeown.com">
