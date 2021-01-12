@@ -9,7 +9,7 @@ class Alta extends Component {
       <div id="alta-container">
         <div id="Altaredwoodcontainer">
           <header className="App-header">
-            <div class="Altaredwoodh1 App-title">Alta Redwood</div>
+            <div class="Altaredwoodh1 App-title"><a href="/jess-and-dan">Alta Redwood</a></div>
             <div className="Altaredwoodh2 App-description">
               Wellness and Technology Services
             </div>
@@ -80,6 +80,10 @@ class Alta extends Component {
            
             footer#alta-link-footer, footer#alta-link-footer a { 
               color: #ebeff5;
+            }
+
+            div.App-title a {
+              color: inherit;
             }
 
             #Altaredwoodcontainer {

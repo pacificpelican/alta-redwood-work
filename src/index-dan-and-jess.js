@@ -14,7 +14,6 @@ class Index extends Component {
   render() {
     return html`
       <${Moving} />
-      <${Card} cardTitle="AltaRedwood.com Store" subTitle="get your web site merch" cardUrl="https://altaredwood.com" />
       <${Alta} />
       <!-- <${Hammerhead} animal="Mango the Quaker Parrot" /> -->
     `;
