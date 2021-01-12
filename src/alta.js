@@ -75,7 +75,7 @@ class Alta extends Component {
               background: white;
             }
             body {
-              background-image: url("./static/img/redwood.jpeg");
+              background-image: url("./static/img/American-boat-Sept2011-by-DanielJMcKeown.webp");
             }
            
             footer#alta-link-footer, footer#alta-link-footer a { 
