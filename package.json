@@ -1,12 +1,12 @@
 {
   "name": "alta-redwood-work",
-  "version": "1.0.0",
+  "version": "2.0.0-alpha-3",
   "description": "a web-components-based altaredwood.work home page",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx snowpack",
-    "dev": "npx snowpack dev",
+    "build": "npx snowpack@1.7.1",
+    "dev": "npx snowpack@1.7.1 dev",
     "start": "npx serve ."
   },
   "author": "Dan McKeown <d@danmckeown.info>",

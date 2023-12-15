@@ -14,16 +14,8 @@ class Index extends Component {
   render() {
     return html`
       <${Moving} />
-      <${Card} cardTitle="AltaRedwood.com Store" subTitle="get your web site merch" cardUrl="https://altaredwood.com" />
-      <section id="logo_img">
-        <a href="https://altaredwood.work"><img id="altaredwood" src="./static/img/altaRedwoodLogo.jpg" /></a>
-      </section>
       <${Alta} />
-      <style>
-        img#altaredwood {
-          width: calc(22vw + 10pt);
-        }
-      </style>
+      <!-- <${Hammerhead} animal="Mango the Quaker Parrot" /> -->
     `;
   }
 }

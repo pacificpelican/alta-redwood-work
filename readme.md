@@ -1,8 +1,8 @@
  
  # alta-redwood-work
 
- * [altaredwood.work](https://altaredwood.work) home page
- * copyright 2020 [Daniel](https://danieljmckeown.com) and [Jessica McKeown](http://jessmckeown.com)
+ * altaredwood.work home page
+ * copyright 2020-2023 [Daniel and Jessica McKeown](http://jess-and-dan-mckeown.com)
 
  ## The active branch for current live development is the `gh-pages` branch
 
@@ -22,7 +22,7 @@ This project provides the following features:
 
 ## quickstart
 
-===
+
 download and build
 ===
 
@@ -31,7 +31,7 @@ download and build
 2. `npm install`
 3. `npm run build`
 
-===
+
 serve the site
 ===
 
