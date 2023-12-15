@@ -50,7 +50,7 @@ class Alta extends Component {
             </div>
           </div>
           <footer className="link" id="alta-link-footer">
-            copyright 2020 <a href="https://altaredwood.work">altaredwood.work</a>
+            copyright 2020-2023 <a href="https://jess-and-dan-mckeown.com">Jess and Dan McKeown</a> / <a href="https://altaredwood.work">altaredwood.work</a>
           </footer>
         </div>
           <style>

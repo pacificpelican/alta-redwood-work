@@ -2,7 +2,7 @@
  # alta-redwood-work
 
  * altaredwood.work home page
- * copyright 2020 [Daniel](https://danieljmckeown.com) and [Jessica McKeown](http://jessmckeown.com)
+ * copyright 2020-2023 [Daniel and Jessica McKeown](http://jess-and-dan-mckeown.com)
 
 
  #### This project was scaffolded with [web-component-boilerplate](https://web-component-boilerplate.pacificio.com) v0.8.0

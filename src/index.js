@@ -24,7 +24,6 @@ class Index extends Component {
           width: calc(22vw + 10pt);
         }
       </style>
-        }
     `;
   }
 }
