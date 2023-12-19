@@ -8,13 +8,13 @@ class Alta extends Component {
     return html`
       <div id="alta-container">
         <div id="Altaredwoodcontainer">
-          <header className="App-header">
+          <!-- <header className="App-header">
             <div class="Altaredwoodh1 App-title"><a href="/jess-and-dan">Alta Redwood</a></div>
             <div className="Altaredwoodh2 App-description">
               Wellness and Technology Services
             </div>
-          </header>
-          <div class="Partnersection">
+          </header> -->
+          <!-- <div class="Partnersection">
             <div class="Partnerdiv">
               <h3 className="partnerh1">
                 <a class="Altaredwooda" href="https://jessmckeown.com">
@@ -48,7 +48,7 @@ class Alta extends Component {
                 </a>
               </span>
             </div>
-          </div>
+          </div> -->
           <footer className="link" id="alta-link-footer">
             copyright 2020-2023 <a href="https://jess-and-dan-mckeown.com">Jess and Dan McKeown</a> / <a href="https://altaredwood.work">altaredwood.work</a>
           </footer>
