@@ -1,0 +1,19 @@
+{
+  "name": "reel",
+  "version": "0.1.0",
+  "description": "photo-blog tooling",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pacificpelican/reel.git"
+  },
+  "author": "Dan McKeown <d@danmckeown.info>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pacificpelican/reel/issues"
+  },
+  "homepage": "https://github.com/pacificpelican/reel#readme"
+}
