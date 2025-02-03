@@ -1,6 +1,6 @@
 {
   "name": "alta-redwood-work",
-  "version": "3.0.0-beta-3",
+  "version": "4.0.0-beta-1",
   "description": "a web-components-based altaredwood.work home page",
   "main": "index.html",
   "scripts": {

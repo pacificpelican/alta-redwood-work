@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AltaRedwood.work home page</title>
+    <title>Animated Swirling Vortex</title>
     <style>
         * {
             margin: 0;
@@ -19,30 +19,9 @@
             width: 100vw;
             height: 100vh;
         }
-        #site_links {
-          display: flex;
-          color: white;
-          font-size: 2.7rem;
-        }
-        #site_links button {
-          background: black;
-          color: white;
-          border: 1px solid white;
-          padding: 1rem;
-          margin: 1rem;
-          cursor: pointer;
-        }
     </style>
 </head>
 <body>
-
-  <footer id="site_links">
-    <!-- <button id="home" onclick="window.location.href='https://altaredwood.work'">AltaRedwood.work</button> -->
-    <button id="home" onclick="window.location.href='https://bsky.app/profile/altaredwood.work'">Alta Redwood on BlueSky</button>
-    <button id="dan_and_jessica" onclick="window.location.href='https://pacificio.com/contact'">contact</button>
-    <button id="dan_and_jessica" onclick="window.location.href='https://jess-and-dan-mckeown.com'">Jess and Dan business site</button>
-  </footer>
-
     <svg id="vortex" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
         <defs>
             <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
@@ -53,8 +32,6 @@
         </defs>
         <path id="swirl" fill="url(#gradient)" d=""></path>
     </svg>
-
- 
 
     <script>
         const svg = document.getElementById('vortex');
