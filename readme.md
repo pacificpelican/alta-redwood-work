@@ -1,8 +1,8 @@
  
  # alta-redwood-work
 
- * altaredwood.work home page
- * copyright 2020-2023 [Daniel and Jessica McKeown](http://jess-and-dan-mckeown.com)
+ * [altaredwood.work](https://altaredwood.work) home page
+ * copyright 2020-2025 [Dan McKeown](http://danmckeown.info/about)
 
  ## The active branch for current live development is the `gh-pages` branch
 
