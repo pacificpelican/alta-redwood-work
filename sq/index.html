@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoreline Quarterly</title>
+  <style>
+    /* General reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .container a {
+      color: #00ffff;
+      text-decoration: none;
+      font-size: 1rem;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .container a:hover {
+      text-decoration: underline;
+    }
+
+    .container h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .issues {
+      list-style: none;
+      font-size: 1.2rem;
+    }
+
+    .issues li {
+      margin-bottom: 5px;
+    }
+
+    .wheel {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      margin: -200px 0 0 -200px; /* Center the wheel */
+      border-radius: 50%;
+      background: conic-gradient(
+        red,
+        orange,
+        yellow,
+        green,
+        blue,
+        indigo,
+        violet,
+        red
+      );
+      animation: spin 10s linear infinite, colorPulse 6s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    /* Wheel spinning animation */
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Psychedelic color animation */
+    @keyframes colorPulse {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+      50% {
+        filter: hue-rotate(180deg);
+      }
+      100% {
+        filter: hue-rotate(360deg);
+      }
+    }
+
+    /* Center content with a white background */
+    .content-background {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: black;
+      padding: 20px 40px;
+      border-radius: 10px;
+      z-index: 1;
+    }
+
+    footer.addedOn {
+        color: darkblue;
+        font-family: monospace;
+        padding-left: calc(39vw+10pt);
+    }
+  </style>
+</head>
+<body>
+  <div class="wheel"></div>
+  <div class="container">
+    <div class="content-background">
+      <h1>Shoreline Quarterly</h1>
+      <a href="https://pacificio.com/contact" target="_blank">Contact</a>
+      <h2>Links</h2>
+      <ul class="issues">
+        <li><a href="./static/Shoreline_Quarterly_Issue_01.pdf"></a>Issue 1</li>
+        <li>Issue 2</li> (Coming soon)
+      </ul>
+    </div>
+  </div>
+  <footer id="low_footer" class="addedOn">
+    <a href="https://altaredwood.work">altaredwood.work</a>
+  </footer>
+</body>
+</html>
