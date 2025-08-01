@@ -16,17 +16,21 @@
       font-family: Arial, sans-serif;
       background: black;
       color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
+      margin: 0;
       overflow: hidden;
+      /* Remove flex centering from body */
     }
 
     .container {
-      position: relative;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
       z-index: 1;
+      pointer-events: none; /* Let wheel events pass through except for content */
     }
 
     .container h1 {
@@ -107,20 +111,28 @@
 
     /* Center content with a white background */
     .content-background {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       background: black;
       padding: 20px 40px;
       border-radius: 10px;
       z-index: 1;
+      position: relative;
+      pointer-events: auto; /* Allow interaction */
+      /* Remove absolute positioning and transform */
     }
 
-    footer.addedOn {
+    footer.addedOn, footer.addedOn a {
         color: darkblue;
         font-family: monospace;
         padding-left: calc(39vw+10pt);
+    }
+    span.smallText {
+      font-size: 0.8rem;
+      color: gray;
+    }
+    ul.issues li, ul.issues li a {
+      color: #97b5cf;
+      text-decoration: none;
+      font-size: 1.4rem;
     }
   </style>
 </head>
@@ -132,8 +144,8 @@
       <a href="https://pacificio.com/contact" target="_blank">Contact</a>
       <h2>Links</h2>
       <ul class="issues">
-        <li><a href="./static/Shoreline_Quarterly_Issue_01.pdf"></a>Issue 1</li>
-        <li>Issue 2</li> (Coming soon)
+        <li><a href="../sq/static/Shoreline_Quarterly_Issue_01.pdf">Issue 1</a></li>
+        <!-- <li><a href="#">Issue 2</a> <span class="smallText">(Coming soon)</span></li> -->
       </ul>
     </div>
   </div>
