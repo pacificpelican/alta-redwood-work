@@ -4,6 +4,8 @@
  * [altaredwood.work](https://altaredwood.work) home page
  * copyright 2020-2025 [Dan McKeown](http://danmckeown.info/about)
 
+ ### This project includes content such as []`bird music`](./parrot-music) and [`Shoreline Quarterly`](./sq)
+
  ## The active branch for current live development is the `gh-pages` branch
 
  #### This project was scaffolded with [web-component-boilerplate](https://web-component-boilerplate.pacificio.com) v0.8.0
