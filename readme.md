@@ -4,7 +4,7 @@
  * [altaredwood.work](https://altaredwood.work) home page
  * copyright 2020-2025 [Dan McKeown](http://danmckeown.info/about)
 
- ### This project includes content such as []`bird music`](./parrot-music) and [`Shoreline Quarterly`](./sq)
+ ### This project includes content such as [`bird music`](./parrot-music) and [`Shoreline Quarterly`](./sq)
 
  ## The active branch for current live development is the `gh-pages` branch
 
@@ -25,8 +25,7 @@ This project provides the following features:
 ## quickstart
 
 
-download and build
-===
+### download and build
 
 0. git clone `git-url-here`
 1. `cd web-component-boilerplate`
@@ -34,11 +33,10 @@ download and build
 3. `npm run build`
 
 
-serve the site
-===
+### serve the site
 
 4. `npm run start` *(defaults to using the `serve` tool but you can serve the site with your preferred static site server)*
-5. `open [http://localhost:5000](http://localhost:5000)` *(to visit the server)*
+5. open `http://localhost:5000` *(or your server address)*
 
 ## requirements
 - NodeJS

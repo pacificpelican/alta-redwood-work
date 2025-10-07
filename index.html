@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,38 +11,59 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             overflow: hidden;
             background: black;
         }
+
         svg {
             display: block;
             width: 100vw;
             height: 100vh;
         }
+
         #site_links {
-          display: flex;
-          color: white;
-          font-size: 2.7rem;
+            display: flex;
+            color: white;
+            font-size: 2.7rem;
         }
+
         #site_links button {
-          background: black;
-          color: white;
-          border: 1px solid white;
-          padding: 1rem;
-          margin: 1rem;
-          cursor: pointer;
+            background: black;
+            color: white;
+            border: 1px solid white;
+            padding: 1rem;
+            margin: 1rem;
+            cursor: pointer;
         }
     </style>
 </head>
+
 <body>
 
-  <footer id="site_links">
-    <!-- <button id="home" onclick="window.location.href='https://altaredwood.work'">AltaRedwood.work</button> -->
-    <button id="home" onclick="window.location.href='https://bsky.app/profile/altaredwood.work'">Alta Redwood on BlueSky</button>
-    <button id="dan_and_jessica" onclick="window.location.href='https://pacificio.com/contact'">contact</button>
-    <button id="dan_and_jessica" onclick="window.location.href='https://jess-and-dan-mckeown.com'">Jess and Dan business site</button>
-  </footer>
+    <footer id="site_links">
+        <!-- <button id="home" onclick="window.location.href='https://altaredwood.work'">AltaRedwood.work</button> -->
+        <button id="home" onclick="window.location.href='https://bsky.app/profile/altaredwood.work'">Alta Redwood on
+            BlueSky</button>
+        <button id="dan_and_jessica" onclick="window.location.href='https://pacificio.com/contact'">contact</button>
+        
+        <!-- Menu container -->
+        <div class="menu-container">
+            <!-- Box emoji button -->
+            <button class="menu-button" aria-haspopup="true" aria-expanded="false" aria-controls="menu">
+                📦
+            </button>
+
+            <!-- Dropdown menu -->
+            <div class="menu-dropdown" id="menu" role="menu" aria-labelledby="menu-button">
+                <button id="dan_and_jessica" onclick="window.location.href='https://jess-and-dan-mckeown.com'">Jess and Dan
+            business site</button>
+                <a href="./sq" class="menu-item" role="menuitem">Shoreline Quarterly</a>
+                <a href="./parrot-music/" class="menu-item" role="menuitem">Parrot Music</a>
+            </div>
+        </div>
+    </footer>
 
     <svg id="vortex" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
         <defs>
@@ -54,7 +76,7 @@
         <path id="swirl" fill="url(#gradient)" d=""></path>
     </svg>
 
- 
+
 
     <script>
         const svg = document.getElementById('vortex');
@@ -113,5 +135,126 @@
         // Start the animation
         animate();
     </script>
+
+
+    <style>
+        /* General reset styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container for the box emoji */
+        .menu-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Box emoji button */
+        .menu-button {
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-button:focus,
+        .menu-button:hover {
+            outline: none;
+            background-color: #f0f0f0;
+        }
+
+        /* Dropdown menu styles */
+        .menu-dropdown {
+            position: absolute;
+            top: 3rem;
+            /* Adjust for placement below the button */
+            right: 0;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            width: 200px;
+            display: none;
+            z-index: 10;
+            transition: opacity 0.2s ease;
+        }
+
+        .menu-dropdown.open {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Menu item styles */
+        .menu-item {
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #333;
+            display: block;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .menu-item:hover,
+        .menu-item:focus {
+            background-color: #f7f7f7;
+            outline: none;
+        }
+
+        /* Accessibility: Focus styles for keyboard navigation */
+        .menu-item:focus {
+            background-color: #e0e0e0;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 600px) {
+            .menu-dropdown {
+                width: 150px;
+            }
+
+            .menu-item {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+
+
+
+
+    <script>
+        // Get references to the button and menu
+        const menuButton = document.querySelector('.menu-button');
+        const menuDropdown = document.querySelector('.menu-dropdown');
+
+        // Toggle menu visibility
+        menuButton.addEventListener('click', () => {
+            const isOpen = menuDropdown.classList.contains('open');
+            menuDropdown.classList.toggle('open', !isOpen);
+            menuButton.setAttribute('aria-expanded', !isOpen);
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!menuButton.contains(event.target) && !menuDropdown.contains(event.target)) {
+                menuDropdown.classList.remove('open');
+                menuButton.setAttribute('aria-expanded', false);
+            }
+        });
+
+        // Close menu on pressing Escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && menuDropdown.classList.contains('open')) {
+                menuDropdown.classList.remove('open');
+                menuButton.setAttribute('aria-expanded', false);
+                menuButton.focus();
+            }
+        });
+    </script>
+
 </body>
+
 </html>
