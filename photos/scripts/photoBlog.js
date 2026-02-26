@@ -20,7 +20,7 @@ class PhotoBlog extends HTMLElement {
     // Fetch the list of photos from the directory
     // first, use JavaScript to create an array of the photo file names that are in the directory
     // then, use the array to set the photos property of the component
-    
+    console.log('Loading photos from directory:', photoDir);
     // Fetch the list of photos from the directory
     fetch(photoDir)
       .then(response => response.text())
@@ -38,7 +38,8 @@ class PhotoBlog extends HTMLElement {
   }
 
   render() {
-    const currentPhoto = this.photos[this.currentIndex];
+    console.log('Rendering photo blog with photos:', this.photos);
+    const currentPhoto = this.photos[this.currentIndex] ? console.log(this.photos[this.currentIndex]) || this.photos[this.currentIndex] : '';
 
     this.shadowRoot.innerHTML = `
       <style>

@@ -69,9 +69,9 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 400px;
-      height: 400px;
-      margin: -200px 0 0 -200px; /* Center the wheel */
+      width: calc(200pt + 20vw + 10em);
+      height: calc(200pt + 20vw + 10em);
+      margin: calc(calc(-200pt - 20vw - 10em) / 2) 0 0 calc(calc(-200pt - 20vw - 10em) / 2); /* Center the wheel */
       border-radius: 50%;
       background: conic-gradient(
         red,
@@ -135,6 +135,13 @@
       text-decoration: none;
       font-size: 1.4rem;
     }
+    ul.issues ul li {
+      margin-left: calc(4pt + 4vw);
+      font-size: 0.95rem;
+    }
+    ul.issues ul li a {
+      font-size: 0.95rem;
+    }
   </style>
 </head>
 <body>
@@ -147,8 +154,11 @@
       <ul class="issues">
         <li id="issue_1_link"><a href="../sq/static/Shoreline_Quarterly_Issue_01_rev_1.pdf">Issue 1</a></li>
         <li id="issue_2_link"><a href="../sq/static/Shoreline_Quarterly_Issue_02.pdf">Issue 2</a></li>
-        <li id="postcards_link"><a href="../sq/static/Shoreline_postcards__Dec2025__flip_side_inverted--adjusted-Jan2026_update.pdf">Printable Postcards</a></li>
-        <!-- <li id="issue_3_link"><a href="#">Issue 3</a> <span class="smallText">(Coming soon)</span></li> -->
+        <li id="issue_3_link"><a href="../sq/static/Shoreline_Quarterly_Issue_03.pdf">Issue 3</a></li>
+        <ul id="inside-list">
+          <li id="postcards_link"><a href="../sq/static/Shoreline_postcards__Dec2025__flip_side_inverted--adjusted-Jan2026_update.pdf">Printable Postcards</a></li>
+        </ul>
+        <!-- <li id="issue_4_link"><a href="#">Issue 4</a> <span class="smallText">(Coming soon)</span></li> -->
       </ul>
     </div>
   </div>
