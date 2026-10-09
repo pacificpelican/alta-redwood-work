@@ -1,273 +1,692 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AltaRedwood.work home page</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            overflow: hidden;
-            background: black;
-        }
+      body {
+        overflow: hidden;
+        background: black;
+      }
 
-        svg {
-            display: block;
-            width: 100vw;
-            height: 100vh;
-        }
+      svg {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+      }
 
-        #site_links {
-            display: flex;
-            color: white;
-            font-size: 2.7rem;
-        }
+      #site_links {
+        display: flex;
+        color: white;
+        font-size: 2.7rem;
+      }
 
-        #site_links button {
-            background: black;
-            color: white;
-            border: 1px solid white;
-            padding: 1rem;
-            margin: 1rem;
-            cursor: pointer;
+      #site_links button {
+        background: black;
+        color: white;
+        border: 1px solid white;
+        padding: 1rem;
+        margin: 1rem;
+        cursor: pointer;
+      }
+
+      :root {
+        --sky-top: #8fd3ff;
+        --sky-bottom: #e6f7ff;
+        --cloud: #ffffff;
+        --duration-plane: 9s; /* full trip duration */
+        --duration-cloud: 16s;
+        --max-width: 1100px;
+      }
+
+      /* Basic page reset */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family:
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          "Helvetica Neue",
+          Arial;
+      }
+      body {
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: linear-gradient(
+          180deg,
+          var(--sky-top) 0%,
+          var(--sky-bottom) 100%
+        );
+        min-height: 100vh;
+      }
+
+      /* Wrapper to center and constrain width */
+      .sky-wrap {
+        width: 100%;
+        max-width: var(--max-width);
+        aspect-ratio: 16/9; /* keeps the scene proportionate */
+        position: relative;
+        overflow: hidden;
+        border-radius: 14px;
+        box-shadow: 0 8px 30px rgba(8, 35, 63, 0.12);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0.02) 100%
+        );
+      }
+
+      /* Layer for far clouds (slower) and near clouds (faster) */
+      .cloud-layer {
+        position: absolute;
+        inset: 0;
+        pointer-events: none; /* allow interactions to pass through */
+      }
+
+      /* Reusable cloud shape */
+      .cloud {
+        position: absolute;
+        background: var(--cloud);
+        border-radius: 999px;
+        filter: drop-shadow(0 6px 12px rgba(12, 35, 75, 0.08));
+        opacity: 0.95;
+      }
+      /* composed cloud pieces inside each cloud container */
+      .cloud::before,
+      .cloud::after {
+        content: "";
+        position: absolute;
+        background: var(--cloud);
+        border-radius: 999px;
+      }
+
+      /* Examples of different cloud sizes and compositions */
+      .c-1 {
+        width: 160px;
+        height: 44px;
+        top: 12%;
+        left: -20%;
+      }
+      .c-1::before {
+        width: 80px;
+        height: 60px;
+        top: -30px;
+        left: 20px;
+      }
+      .c-1::after {
+        width: 56px;
+        height: 56px;
+        top: -18px;
+        left: 80px;
+      }
+
+      .c-2 {
+        width: 110px;
+        height: 36px;
+        top: 35%;
+        left: -25%;
+      }
+      .c-2::before {
+        width: 50px;
+        height: 50px;
+        top: -26px;
+        left: 12px;
+      }
+      .c-2::after {
+        width: 44px;
+        height: 44px;
+        top: -12px;
+        left: 64px;
+        opacity: 0.98;
+      }
+
+      .c-3 {
+        width: 220px;
+        height: 60px;
+        top: 58%;
+        left: -35%;
+      }
+      .c-3::before {
+        width: 96px;
+        height: 78px;
+        top: -34px;
+        left: 26px;
+      }
+      .c-3::after {
+        width: 72px;
+        height: 72px;
+        top: -20px;
+        left: 120px;
+      }
+
+      .c-4 {
+        width: 82px;
+        height: 28px;
+        top: 75%;
+        left: -18%;
+      }
+      .c-4::before {
+        width: 44px;
+        height: 44px;
+        top: -24px;
+        left: 8px;
+      }
+      .c-4::after {
+        width: 34px;
+        height: 34px;
+        top: -10px;
+        left: 46px;
+      }
+
+      /* Cloud movement: translate from left (off-screen) to right (off-screen) */
+      @keyframes cloud-fly {
+        0% {
+          transform: translateX(0);
         }
+        100% {
+          transform: translateX(calc(120vw + 200px));
+        } /* enough to fully exit */
+      }
+
+      /* Assign different speeds/offsets to layers for parallax */
+      .cloud-slow .cloud {
+        animation: cloud-fly var(--duration-cloud) linear infinite;
+      }
+      .cloud-fast .cloud {
+        animation: cloud-fly calc(var(--duration-cloud) * 0.6) linear infinite;
+      }
+
+      /* Staggered start times for variety */
+      .cloud-slow .c-1 {
+        animation-delay: -2s;
+      }
+      .cloud-slow .c-2 {
+        animation-delay: -6s;
+      }
+      .cloud-slow .c-3 {
+        animation-delay: -10s;
+      }
+      .cloud-fast .c-4 {
+        animation-delay: -4s;
+      }
+      .cloud-fast .c-2 {
+        animation-delay: -1s;
+      }
+
+      /* Airplane container holds the emoji and handles flight path */
+      .plane-wrap {
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        left: -10%;
+        top: 55%;
+        transform-origin: center;
+        will-change: transform;
+        pointer-events: auto; /* allow hover/tap */
+        z-index: 30;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* airplane emoji style */
+      .plane {
+        font-size: 38px;
+        transform-origin: center;
+        display: inline-block;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      /* flight path animation: move from left-bottom to right-top with slight tilt */
+      @keyframes plane-flight {
+        0% {
+          transform: translate(-10vw, 20vh) rotate(-10deg) scale(1);
+          opacity: 0.95;
+        }
+        20% {
+          transform: translate(10vw, 10vh) rotate(-6deg) scale(1.02);
+        }
+        50% {
+          transform: translate(45vw, 2vh) rotate(2deg) scale(1.06);
+        }
+        80% {
+          transform: translate(85vw, -6vh) rotate(8deg) scale(1.02);
+        }
+        100% {
+          transform: translate(110vw, -12vh) rotate(12deg) scale(1);
+          opacity: 0.95;
+        }
+      }
+
+      .plane-wrap.play {
+        animation: plane-flight var(--duration-plane) ease-in-out infinite;
+      }
+
+      /* Add a subtle wing bobbing to make it feel lively */
+      @keyframes plane-bob {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-4px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+      .plane {
+        animation: plane-bob 1.8s ease-in-out infinite;
+        display: inline-block;
+      }
+
+      /* On hover (or focus), slow the plane for emphasis */
+      .plane-wrap:hover,
+      .plane-wrap:focus-within {
+        animation-play-state: paused;
+        cursor: pointer;
+      }
+
+      /* Accessibility: respect user's reduced motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        .cloud-slow .cloud,
+        .cloud-fast .cloud,
+        .plane-wrap.play,
+        .plane {
+          animation: none !important;
+        }
+      }
+
+      /* Small screens: scale down sizes */
+      @media (max-width: 640px) {
+        .plane-wrap {
+          width: 40px;
+          height: 40px;
+          top: 62%;
+          left: -10%;
+        }
+        .plane {
+          font-size: 30px;
+        }
+        .c-1 {
+          width: 120px;
+          height: 36px;
+        }
+        .c-3 {
+          width: 160px;
+          height: 46px;
+        }
+      }
+
+      /* Helper controls (optional): visually hidden but available for keyboard users */
+      .sr-only {
+        position: absolute !important;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        clip: rect(1px, 1px, 1px, 1px);
+        white-space: nowrap;
+        border: 0;
+        padding: 0;
+        margin: -1px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <footer id="site_links">
-        <!-- <button id="home" onclick="window.location.href='https://altaredwood.work'">AltaRedwood.work</button> -->
-        <button id="home" onclick="window.location.href='https://bsky.app/profile/altaredwood.work'">Alta Redwood on
-            BlueSky</button>
-        <button id="dan_and_jessica" onclick="window.location.href='https://pacificio.com/contact'">contact</button>
-        
-        <!-- Menu container -->
-        <div class="menu-container">
-            <!-- Box emoji button -->
-            <button class="menu-button" aria-haspopup="true" aria-expanded="false" aria-controls="menu">
-                📦
-            </button>
+      <!-- <button id="home" onclick="window.location.href='https://altaredwood.work'">AltaRedwood.work</button> -->
+      <button
+        id="home"
+        onclick="
+          window.location.href = 'https://bsky.app/profile/altaredwood.work'
+        "
+      >
+        Alta Redwood on BlueSky
+      </button>
+      <button
+        id="dan_and_jessica"
+        onclick="window.location.href = 'https://pacificio.com/contact'"
+      >
+        contact
+      </button>
 
-            <!-- Dropdown menu -->
-            <div class="menu-dropdown" id="menu" role="menu" aria-labelledby="menu-button">
-                <button id="dan_and_jessica" onclick="window.location.href='https://jess-and-dan-mckeown.com'">Jess and Dan
-            business site</button>
-                <a href="https://www.youtube.com/watch?v=81YSN6aNjK8&" class="menu-item" role="menuitem">video: Modern Web Overview</a>
-                <a href="https://danieljmckeown.com" class="menu-item" role="menuitem" id="ScheduleNow">Schedule Tech Help</a>
-                <a href="./sq" class="menu-item" role="menuitem">Shoreline Quarterly</a>
-                <a href="./parrot-music/" class="menu-item" role="menuitem">Parrot Music</a>
-                <a href="https://danmckeown.info" class="menu-item" role="menuitem">Share Your PDFs</a>
-                <a href="https://pacificpelican.us" class="menu-item" role="menuitem">pacificpelican.us</a>
-            </div>
+      <!-- Menu container -->
+      <div class="menu-container">
+        <!-- Box emoji button -->
+        <button
+          class="menu-button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="menu"
+        >
+          📦
+        </button>
+
+        <!-- Dropdown menu -->
+        <div
+          class="menu-dropdown"
+          id="menu"
+          role="menu"
+          aria-labelledby="menu-button"
+        >
+          <button
+            id="dan_and_jessica"
+            onclick="window.location.href = 'https://jess-and-dan-mckeown.com'"
+          >
+            Jess and Dan business site
+          </button>
+          <a
+            href="https://www.youtube.com/watch?v=81YSN6aNjK8&"
+            class="menu-item"
+            role="menuitem"
+            >video: Modern Web Overview</a
+          >
+          <a
+            href="https://danieljmckeown.com"
+            class="menu-item"
+            role="menuitem"
+            id="ScheduleNow"
+            >Schedule Tech Help</a
+          >
+          <a href="./sq/" class="menu-item" role="menuitem"
+            >Shoreline Quarterly</a
+          >
+          <a href="./parrot-music/" class="menu-item" role="menuitem"
+            >Parrot Music</a
+          >
+          <a href="https://danmckeown.info" class="menu-item" role="menuitem"
+            >Share Your PDFs</a
+          >
+          <a href="https://pacificpelican.us" class="menu-item" role="menuitem"
+            >pacificpelican.us</a
+          >
         </div>
+      </div>
     </footer>
 
-    <svg id="vortex" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
-        <defs>
-            <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#ff0000" />
-                <stop offset="50%" stop-color="#00ff00" />
-                <stop offset="100%" stop-color="#0000ff" />
-            </radialGradient>
-        </defs>
-        <path id="swirl" fill="url(#gradient)" d=""></path>
-    </svg>
+    <div
+      class="sky-wrap"
+      aria-hidden="false"
+      role="img"
+      aria-label="Animated airplane flying across the sky with clouds"
+    >
+      <!-- Far (slower) cloud layer -->
+      <div class="cloud-layer cloud-slow" aria-hidden="true">
+        <div class="cloud c-1" style="top: 8%; left: -28%; opacity: 0.95"></div>
+        <div
+          class="cloud c-2"
+          style="top: 32%; left: -36%; opacity: 0.92"
+        ></div>
+        <div
+          class="cloud c-3"
+          style="top: 56%; left: -45%; opacity: 0.98"
+        ></div>
+      </div>
 
+      <!-- Near (faster) cloud layer -->
+      <div class="cloud-layer cloud-fast" aria-hidden="true">
+        <div
+          class="cloud c-4"
+          style="top: 70%; left: -20%; opacity: 0.96"
+        ></div>
+        <div
+          class="cloud c-2"
+          style="top: 18%; left: -24%; opacity: 0.94"
+        ></div>
+        <div class="cloud c-1" style="top: 44%; left: -30%; opacity: 0.9"></div>
+      </div>
 
+      <!-- Airplane -->
+      <button
+        class="plane-wrap play"
+        id="planeBtn"
+        aria-label="Airplane animation. Tap or hover to pause."
+        title="Hover or tap to pause"
+      >
+        <!-- Use the emoji you prefer — ✈️ or 🛩️. I'll default to the classic airplane emoji. -->
+        <span class="plane" aria-hidden="true">✈️</span>
+      </button>
+
+      <!-- Hidden control for keyboard users -->
+      <div class="sr-only" id="planeStatus" aria-live="polite">
+        Animation running
+      </div>
+    </div>
 
     <script>
-        const svg = document.getElementById('vortex');
-        const swirlPath = document.getElementById('swirl');
+      // Small JS to enable pause/resume on tap (useful for touch devices)
+      (function () {
+        const planeBtn = document.getElementById("planeBtn");
+        const status = document.getElementById("planeStatus");
 
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
+        if (!planeBtn) return;
 
-        const centerX = viewportWidth / 2;
-        const centerY = viewportHeight / 2;
-        const maxRadius = Math.max(viewportWidth, viewportHeight) / 2;
+        let playing = true;
+        const updateStatus = () => {
+          status.textContent = playing
+            ? "Animation running"
+            : "Animation paused";
+          planeBtn.setAttribute("aria-pressed", String(!playing)); // inverted because pressing pauses
+        };
 
-        // Generate the vortex path without using unsafe string evaluations
-        function generateVortexPath() {
-            const points = [];
-            const numPoints = 50;
-            const swirlFactor = Math.random() * 0.5 + 0.5;
+        // Toggle on click / tap
+        planeBtn.addEventListener("click", (e) => {
+          // If user prefers reduced motion, do nothing
+          const prefersReduced =
+            window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (prefersReduced) return;
 
-            for (let i = 0; i < numPoints; i++) {
-                const angle = (i / numPoints) * Math.PI * 2 * swirlFactor;
-                const radius = maxRadius * (Math.random() * 0.8 + 0.2) * (i / numPoints);
-                const x = centerX + Math.cos(angle) * radius;
-                const y = centerY + Math.sin(angle) * radius;
-                points.push(`${x},${y}`);
-            }
+          const computed = getComputedStyle(planeBtn);
+          // Read animation-play-state to decide
+          const isPaused =
+            computed.animationPlayState === "paused" ||
+            computed.getPropertyValue("animation-play-state") === "paused";
+          playing = !isPaused;
+          // toggle by setting inline style
+          planeBtn.style.animationPlayState = isPaused ? "running" : "paused";
 
-            // Create the "d" attribute path string
-            return `M${centerX},${centerY} L${points.join(' ')} Z`;
-        }
+          // also pause/play clouds in parent container
+          const cloudLayers = document.querySelectorAll(".cloud-layer .cloud");
+          cloudLayers.forEach(
+            (c) =>
+              (c.style.animationPlayState = isPaused ? "running" : "paused"),
+          );
 
-        // Update the gradient colors without unsafe operations
-        function updateGradient() {
-            const gradient = document.getElementById('gradient');
-            const stops = gradient.querySelectorAll('stop');
+          // plane bob
+          const plane = planeBtn.querySelector(".plane");
+          if (plane)
+            plane.style.animationPlayState = isPaused ? "running" : "paused";
 
-            stops.forEach(stop => {
-                stop.setAttribute('stop-color', getRandomColor());
-            });
-        }
+          // Flip playing flag because isPaused was the prior state
+          playing = isPaused;
+          updateStatus();
+        });
 
-        // Generate a random RGB color
-        function getRandomColor() {
-            const r = Math.floor(Math.random() * 256);
-            const g = Math.floor(Math.random() * 256);
-            const b = Math.floor(Math.random() * 256);
-            return `rgb(${r},${g},${b})`;
-        }
+        // Pause animation during touchstart to make interaction easier (optional UX)
+        planeBtn.addEventListener(
+          "touchstart",
+          () => {
+            const prefersReduced =
+              window.matchMedia &&
+              window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (prefersReduced) return;
+            planeBtn.style.animationPlayState = "paused";
+            document
+              .querySelectorAll(".cloud-layer .cloud")
+              .forEach((c) => (c.style.animationPlayState = "paused"));
+            const plane = planeBtn.querySelector(".plane");
+            if (plane) plane.style.animationPlayState = "paused";
+            playing = false;
+            updateStatus();
+          },
+          { passive: true },
+        );
 
-        // Main animation loop
-        function animate() {
-            swirlPath.setAttribute('d', generateVortexPath());
-            updateGradient();
-            requestAnimationFrame(animate);
-        }
+        // Re-enable on touchend after a small delay
+        planeBtn.addEventListener(
+          "touchend",
+          () => {
+            const prefersReduced =
+              window.matchMedia &&
+              window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (prefersReduced) return;
+            setTimeout(() => {
+              planeBtn.style.animationPlayState = "running";
+              document
+                .querySelectorAll(".cloud-layer .cloud")
+                .forEach((c) => (c.style.animationPlayState = "running"));
+              const plane = planeBtn.querySelector(".plane");
+              if (plane) plane.style.animationPlayState = "running";
+              playing = true;
+              updateStatus();
+            }, 350);
+          },
+          { passive: true },
+        );
 
-        // Start the animation
-        animate();
+        // Initialize aria-pressed
+        planeBtn.setAttribute("aria-pressed", "false");
+        updateStatus();
+      })();
     </script>
-
 
     <style>
-        /* General reset styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+      /* General reset styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
 
-        /* Container for the box emoji */
-        .menu-container {
-            position: relative;
-            display: inline-block;
-        }
+      /* Container for the box emoji */
+      .menu-container {
+        position: relative;
+        display: inline-block;
+      }
 
-        /* Box emoji button */
-        .menu-button {
-            font-size: 2rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
+      /* Box emoji button */
+      .menu-button {
+        font-size: 2rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+      }
 
-        .menu-button:focus,
-        .menu-button:hover {
-            outline: none;
-            background-color: #f0f0f0;
-        }
+      .menu-button:focus,
+      .menu-button:hover {
+        outline: none;
+        background-color: #f0f0f0;
+      }
 
-        /* Dropdown menu styles */
+      /* Dropdown menu styles */
+      .menu-dropdown {
+        position: absolute;
+        top: 3rem;
+        /* Adjust for placement below the button */
+        right: 0;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        width: 200px;
+        display: none;
+        z-index: 10;
+        transition: opacity 0.2s ease;
+      }
+
+      .menu-dropdown.open {
+        display: block;
+        opacity: 1;
+      }
+
+      /* Menu item styles */
+      .menu-item {
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        color: #333;
+        display: block;
+        font-size: 1rem;
+        transition: background-color 0.2s ease;
+      }
+
+      .menu-item:hover,
+      .menu-item:focus {
+        background-color: #f7f7f7;
+        outline: none;
+      }
+
+      /* Accessibility: Focus styles for keyboard navigation */
+      .menu-item:focus {
+        background-color: #e0e0e0;
+      }
+
+      /* Media queries for responsiveness */
+      @media (max-width: 600px) {
         .menu-dropdown {
-            position: absolute;
-            top: 3rem;
-            /* Adjust for placement below the button */
-            right: 0;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            width: 200px;
-            display: none;
-            z-index: 10;
-            transition: opacity 0.2s ease;
+          width: 150px;
         }
 
-        .menu-dropdown.open {
-            display: block;
-            opacity: 1;
-        }
-
-        /* Menu item styles */
         .menu-item {
-            padding: 0.75rem 1rem;
-            text-decoration: none;
-            color: #333;
-            display: block;
-            font-size: 1rem;
-            transition: background-color 0.2s ease;
+          font-size: 0.9rem;
         }
+      }
 
-        .menu-item:hover,
-        .menu-item:focus {
-            background-color: #f7f7f7;
-            outline: none;
-        }
-
-        /* Accessibility: Focus styles for keyboard navigation */
-        .menu-item:focus {
-            background-color: #e0e0e0;
-        }
-
-        /* Media queries for responsiveness */
-        @media (max-width: 600px) {
-            .menu-dropdown {
-                width: 150px;
-            }
-
-            .menu-item {
-                font-size: 0.9rem;
-            }
-        }
-
-        #ScheduleNow {
-            background-color: #0652a3;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
+      #ScheduleNow {
+        background-color: #0652a3;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
     </style>
 
-
-
-
     <script>
-        // Get references to the button and menu
-        const menuButton = document.querySelector('.menu-button');
-        const menuDropdown = document.querySelector('.menu-dropdown');
+      // Get references to the button and menu
+      const menuButton = document.querySelector(".menu-button");
+      const menuDropdown = document.querySelector(".menu-dropdown");
 
-        // Toggle menu visibility
-        menuButton.addEventListener('click', () => {
-            const isOpen = menuDropdown.classList.contains('open');
-            menuDropdown.classList.toggle('open', !isOpen);
-            menuButton.setAttribute('aria-expanded', !isOpen);
-        });
+      // Toggle menu visibility
+      menuButton.addEventListener("click", () => {
+        const isOpen = menuDropdown.classList.contains("open");
+        menuDropdown.classList.toggle("open", !isOpen);
+        menuButton.setAttribute("aria-expanded", !isOpen);
+      });
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (event) => {
-            if (!menuButton.contains(event.target) && !menuDropdown.contains(event.target)) {
-                menuDropdown.classList.remove('open');
-                menuButton.setAttribute('aria-expanded', false);
-            }
-        });
+      // Close menu when clicking outside
+      document.addEventListener("click", (event) => {
+        if (
+          !menuButton.contains(event.target) &&
+          !menuDropdown.contains(event.target)
+        ) {
+          menuDropdown.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", false);
+        }
+      });
 
-        // Close menu on pressing Escape key
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && menuDropdown.classList.contains('open')) {
-                menuDropdown.classList.remove('open');
-                menuButton.setAttribute('aria-expanded', false);
-                menuButton.focus();
-            }
-        });
+      // Close menu on pressing Escape key
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menuDropdown.classList.contains("open")) {
+          menuDropdown.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", false);
+          menuButton.focus();
+        }
+      });
     </script>
-
-</body>
-
+  </body>
 </html>
