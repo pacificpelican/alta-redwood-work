@@ -340,6 +340,23 @@
         padding: 0;
         margin: -1px;
       }
+
+      button#quaker_parrot {
+        width: calc(8vh + 60px);
+        height: calc(2vh + 2rem + 25px);
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+      button#quaker_parrot:hover {
+        background-color: #2f8f55;
+      }
+
+      svg#parrot {
+        width: calc(8vh);
+        height: calc(2vh + 2rem);
+      }
     </style>
   </head>
 
@@ -456,6 +473,246 @@
       >
         <!-- Use the emoji you prefer — ✈️ or 🛩️. I'll default to the classic airplane emoji. -->
         <span class="plane" aria-hidden="true">✈️</span>
+      </button>
+
+      <!-- Parrot -->
+
+      <button
+        id="quaker_parrot"
+        onclick="
+          window.location.href = 'https://www.youtube.com/watch?v=eI0T58xTx_o'
+        "
+      >
+        <svg
+          id="parrot"
+          viewBox="0 0 420 360"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label="Quaker parrot (stylized SVG)"
+        >
+          <defs>
+            <!-- Soft shading -->
+            <linearGradient
+              id="bodyG"
+              x1="90"
+              y1="80"
+              x2="250"
+              y2="260"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0" stop-color="#4FB36A" />
+              <stop offset="1" stop-color="#2F8F55" />
+            </linearGradient>
+
+            <linearGradient
+              id="wingG"
+              x1="150"
+              y1="110"
+              x2="230"
+              y2="240"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0" stop-color="#2E6F44" />
+              <stop offset="1" stop-color="#1F5331" />
+            </linearGradient>
+
+            <filter
+              id="softShadow"
+              x="-30%"
+              y="-30%"
+              width="160%"
+              height="160%"
+            >
+              <feDropShadow
+                dx="0"
+                dy="4"
+                stdDeviation="4"
+                flood-color="#0b2b18"
+                flood-opacity="0.18"
+              />
+            </filter>
+          </defs>
+
+          <!-- Ground shadow (subtle natural sensibility) -->
+          <ellipse
+            cx="215"
+            cy="305"
+            rx="95"
+            ry="18"
+            fill="#0b2b18"
+            opacity="0.12"
+          />
+
+          <!-- Parrot group -->
+          <g filter="url(#softShadow)">
+            <!-- Tail (long, tapered, a bit organic) -->
+            <path
+              d="M248 160
+             C300 170, 355 215, 372 255
+             C343 248, 316 252, 294 268
+             C310 240, 305 210, 248 160Z"
+              fill="#2A9B5C"
+            />
+
+            <!-- Tail inner contour for depth -->
+            <path
+              d="M265 176
+             C308 192, 345 225, 355 252
+             C336 245, 316 246, 300 258
+             C311 238, 306 214, 265 176Z"
+              fill="#1F7D4A"
+              opacity="0.75"
+            />
+
+            <!-- Body -->
+            <path
+              d="M138 155
+             C128 122, 147 92, 187 85
+             C228 78, 274 92, 286 132
+             C300 182, 277 238, 218 252
+             C165 265, 132 220, 138 155Z"
+              fill="url(#bodyG)"
+            />
+
+            <!-- Wing patch / dark band (readable “Quaker vibe”) -->
+            <path
+              d="M180 138
+             C205 118, 246 118, 268 137
+             C248 155, 234 170, 228 192
+             C210 190, 192 178, 180 160Z"
+              fill="url(#wingG)"
+            />
+
+            <!-- Breast highlight -->
+            <path
+              d="M165 170
+             C176 145, 215 136, 239 148
+             C224 168, 213 187, 211 205
+             C190 203, 173 189, 165 170Z"
+              fill="#5ED17F"
+              opacity="0.55"
+            />
+
+            <!-- Head -->
+            <path
+              d="M206 98
+             C200 76, 222 56, 251 58
+             C280 60, 296 82, 288 104
+             C278 131, 213 128, 206 98Z"
+              fill="#44B86B"
+            />
+
+            <!-- Face cap (slightly darker for natural sensibility) -->
+            <path
+              d="M214 96
+             C214 78, 233 68, 251 70
+             C269 72, 281 87, 277 103
+             C270 125, 219 122, 214 96Z"
+              fill="#2F9E5D"
+              opacity="0.85"
+            />
+
+            <!-- Beak (clean curved triangle/teardrop) -->
+            <path
+              d="M286 103
+             C306 98, 325 106, 334 120
+             C321 129, 303 132, 289 128
+             C284 120, 283 111, 286 103Z"
+              fill="#D2A24C"
+            />
+
+            <!-- Beak underside -->
+            <path
+              d="M300 121
+             C314 121, 326 118, 334 120
+             C330 132, 315 137, 299 134
+             C296 129, 296 124, 300 121Z"
+              fill="#B98535"
+            />
+
+            <!-- Eye -->
+            <circle cx="252" cy="93" r="6.5" fill="#111A14" />
+            <circle cx="254.2" cy="90.7" r="2.1" fill="#F3F6F4" />
+
+            <!-- Legs (implied, minimal cartoon) -->
+            <path
+              d="M205 255 C198 265, 198 275, 206 282"
+              stroke="#2B6B44"
+              stroke-width="6"
+              stroke-linecap="round"
+              fill="none"
+            />
+            <path
+              d="M240 252 C234 265, 235 276, 244 283"
+              stroke="#2B6B44"
+              stroke-width="6"
+              stroke-linecap="round"
+              fill="none"
+            />
+
+            <!-- Toe hint -->
+            <path
+              d="M203 284 C200 289, 199 292, 205 295"
+              stroke="#1E4F33"
+              stroke-width="5"
+              stroke-linecap="round"
+              fill="none"
+            />
+            <path
+              d="M244 285 C241 290, 241 293, 247 297"
+              stroke="#1E4F33"
+              stroke-width="5"
+              stroke-linecap="round"
+              fill="none"
+            />
+
+            <!-- Outline stroke for crispness (optional but helps icon readability) -->
+            <path
+              d="M248 160
+             C300 170, 355 215, 372 255
+             C343 248, 316 252, 294 268
+             C310 240, 305 210, 248 160Z"
+              fill="none"
+              stroke="#0E3B24"
+              stroke-opacity="0.18"
+              stroke-width="3"
+            />
+
+            <path
+              d="M138 155
+             C128 122, 147 92, 187 85
+             C228 78, 274 92, 286 132
+             C300 182, 277 238, 218 252
+             C165 265, 132 220, 138 155Z"
+              fill="none"
+              stroke="#0E3B24"
+              stroke-opacity="0.22"
+              stroke-width="3"
+            />
+
+            <path
+              d="M206 98
+             C200 76, 222 56, 251 58
+             C280 60, 296 82, 288 104
+             C278 131, 213 128, 206 98Z"
+              fill="none"
+              stroke="#0E3B24"
+              stroke-opacity="0.18"
+              stroke-width="3"
+            />
+
+            <path
+              d="M286 103
+             C306 98, 325 106, 334 120
+             C321 129, 303 132, 289 128
+             C284 120, 283 111, 286 103Z"
+              fill="none"
+              stroke="#0E3B24"
+              stroke-opacity="0.16"
+              stroke-width="3"
+            />
+          </g>
+        </svg>
       </button>
 
       <!-- Hidden control for keyboard users -->
@@ -688,5 +945,6 @@
         }
       });
     </script>
+    <aside id="parrots"></aside>
   </body>
 </html>
