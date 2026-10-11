@@ -341,7 +341,7 @@
         margin: -1px;
       }
 
-      button#quaker_parrot {
+      button#quaker_parrot, button#popcorn_silo, button#crow {
         width: calc(8vh + 60px);
         height: calc(2vh + 2rem + 25px);
         font-size: 16px;
@@ -349,8 +349,26 @@
         border-radius: 4px;
         transition: background-color 0.3s ease;
       }
+      .project-links {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding-left: 8px;
+      }
       button#quaker_parrot:hover {
         background-color: #2f8f55;
+      }
+      button#popcorn_silo {
+        font-size: 24px;
+      }
+      button#popcorn_silo:hover {
+        background-color: var(--sky-top);
+      }
+      button#crow {
+        font-size: 24px;
+      }
+      button#crow:hover {
+        background-color: #d8b4fe;
       }
 
       svg#parrot {
@@ -477,12 +495,13 @@
 
       <!-- Parrot -->
 
-      <button
-        id="quaker_parrot"
-        onclick="
-          window.location.href = 'https://www.youtube.com/watch?v=eI0T58xTx_o'
-        "
-      >
+      <div class="project-links">
+        <button
+          id="quaker_parrot"
+          onclick="
+            window.location.href = 'https://www.youtube.com/watch?v=eI0T58xTx_o'
+          "
+        >
         <svg
           id="parrot"
           viewBox="0 0 420 360"
@@ -713,7 +732,27 @@
             />
           </g>
         </svg>
-      </button>
+        </button>
+
+        <button
+          id="popcorn_silo"
+          onclick="
+            window.location.href = 'https://github.com/pacificpelican/popcorn-silo'
+          "
+        >
+          🍿
+        </button>
+
+        <button
+          id="crow"
+          aria-label="Crow video on YouTube"
+          onclick="
+            window.location.href = 'https://www.youtube.com/watch?v=DEMCbXPJJ0s'
+          "
+        >
+          🐦‍⬛
+        </button>
+      </div>
 
       <!-- Hidden control for keyboard users -->
       <div class="sr-only" id="planeStatus" aria-live="polite">
