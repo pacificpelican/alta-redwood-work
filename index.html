@@ -386,7 +386,7 @@
       }
 
       h1#site_title {
-        font-size: 0.75rem;
+        font-size: 1.15rem;
         margin: 0;
       }
       h2#site_subtitle {
@@ -525,12 +525,13 @@
 
       <div class="project-links">
         <button
-          id="quaker_parrot"
+          id="quaker_parrot" 
+          onmouseover="this.setAttribute('title', 'Quaker Parrot video on YouTube')"
           onclick="
             window.location.href = 'https://www.youtube.com/watch?v=eI0T58xTx_o'
           "
-        >
-          <svg
+        > 
+          📺 <svg
             id="parrot"
             viewBox="0 0 420 360"
             xmlns="http://www.w3.org/2000/svg"
@@ -763,7 +764,8 @@
         </button>
 
         <button
-          id="crow"
+          id="crow" 
+          onmouseover="this.setAttribute('title', 'Crow video on YouTube')" title="Crow video on YouTube"
           aria-label="Crow video on YouTube"
           onclick="
             window.location.href = 'https://www.youtube.com/watch?v=DEMCbXPJJ0s'
@@ -773,8 +775,10 @@
         </button>
 
         <button
-          id="popcorn_silo"
+          id="popcorn_silo" 
+          onmouseover="this.setAttribute('title', 'Popcorn Silo GitHub page')" title="Popcorn Silo GitHub page"
           onclick="
+
             window.location.href =
               'https://github.com/pacificpelican/popcorn-silo'
           "
