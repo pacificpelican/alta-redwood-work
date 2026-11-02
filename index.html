@@ -87,6 +87,119 @@
         );
       }
 
+      .games-panel {
+        position: absolute;
+        z-index: 5;
+        top: 4%;
+        bottom: 4%;
+        right: 2%;
+        width: clamp(150px, 38%, 400px);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        overflow-y: auto;
+        scrollbar-width: none;
+      }
+      .game-card {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 8px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.28);
+        backdrop-filter: blur(3px);
+        color: #0b2540;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+      }
+      .game-card:hover,
+      .game-card:focus-within {
+        opacity: 1;
+      }
+      .game-logo {
+        width: clamp(32px, 6vw, 48px);
+        height: auto;
+      }
+      .game-body h3 {
+        margin: 0;
+        font-size: clamp(0.75rem, 1.6vw, 0.95rem);
+      }
+      .game-body p {
+        margin: 2px 0 0;
+        font-size: clamp(0.62rem, 1.2vw, 0.78rem);
+        line-height: 1.25;
+      }
+      .game-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+      .play-btn {
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: clamp(0.62rem, 1.3vw, 0.8rem);
+        font-weight: 700;
+        text-decoration: none;
+        color: #fff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        white-space: nowrap;
+        background: linear-gradient(
+          90deg,
+          #ff0080,
+          #ff8c00,
+          #ffe600,
+          #00e676,
+          #00b0ff,
+          #d500f9,
+          #ff0080
+        );
+        background-size: 300% 100%;
+        animation: playFlash 3s linear infinite, playPulse 1.2s ease-in-out infinite;
+      }
+      .play-btn:hover,
+      .play-btn:focus-visible {
+        animation-duration: 0.8s, 0.5s;
+      }
+      .gh-link {
+        font-size: 0.85rem;
+        text-decoration: none;
+        opacity: 0.6;
+        line-height: 1;
+      }
+      .gh-link:hover {
+        opacity: 1;
+      }
+      @keyframes playFlash {
+        to {
+          background-position: 300% 0;
+        }
+      }
+      @keyframes playPulse {
+        0%, 100% {
+          transform: scale(1);
+          box-shadow: 0 0 4px rgba(255, 0, 128, 0.6);
+        }
+        50% {
+          transform: scale(1.07);
+          box-shadow: 0 0 12px rgba(0, 176, 255, 0.9);
+        }
+      }
+      @media (max-width: 600px) {
+        .games-panel {
+          width: 56%;
+        }
+        .game-body p {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .play-btn {
+          animation: none;
+        }
+      }
+
       /* Layer for far clouds (slower) and near clouds (faster) */
       .cloud-layer {
         position: absolute;
@@ -343,7 +456,6 @@
 
       button#quaker_parrot,
       button#popcorn_silo,
-      button#dog-walker-pro,
       button#crow {
         width: calc(8vh + 60px);
         height: calc(2vh + 2rem + 25px);
@@ -361,12 +473,8 @@
       button#quaker_parrot:hover {
         background-color: #2f8f55;
       }
-      button#popcorn_silo,
-      button#dog-walker-pro {
+      button#popcorn_silo {
         font-size: 24px;
-      }
-      button#dog-walker-pro:hover {
-        background-color: #fcd34d;
       }
       button#popcorn_silo:hover {
         background-color: var(--sky-top);
@@ -791,18 +899,89 @@
           🐙🍿
         </button>
 
-        <button
-          id="dog-walker-pro" 
-          onmouseover="this.setAttribute('title', 'Dog Walker Pro GitHub page')" title="Dog Walker Pro GitHub page"
-          onclick="
-
-            window.location.href =
-              'https://github.com/pacificpelican/dog-walker-pro'
-          "
-        >
-          🐙🐕
-        </button>
       </div>
+
+      <aside class="games-panel" aria-label="Free to play web games">
+        <article class="game-card">
+          <svg class="game-logo" viewBox="0 0 64 64" role="img" aria-label="Dog Walker Pro logo">
+            <defs>
+              <linearGradient id="dwBg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#34d399" />
+                <stop offset="1" stop-color="#0e7490" />
+              </linearGradient>
+            </defs>
+            <rect width="64" height="64" rx="14" fill="url(#dwBg)" />
+            <path d="M6 50 Q32 40 58 50" stroke="#fff" stroke-opacity=".5" stroke-width="3" fill="none" />
+            <ellipse cx="30" cy="30" rx="12" ry="11" fill="#fcd34d" />
+            <path d="M19 22 Q13 24 14 36 Q20 34 21 27Z" fill="#b45309" />
+            <path d="M41 22 Q47 24 46 36 Q40 34 39 27Z" fill="#b45309" />
+            <circle cx="26" cy="29" r="1.8" fill="#0f172a" />
+            <circle cx="34" cy="29" r="1.8" fill="#0f172a" />
+            <ellipse cx="30" cy="35" rx="3" ry="2" fill="#0f172a" />
+            <path d="M42 38 Q54 36 52 20" stroke="#f43f5e" stroke-width="2.5" fill="none" stroke-linecap="round" />
+            <circle cx="52" cy="18" r="3" fill="#f43f5e" />
+          </svg>
+          <div class="game-body">
+            <h3>Dog Walker Pro</h3>
+            <p>Walk a happy pack of pups around the neighborhood in this free browser game.</p>
+          </div>
+          <div class="game-actions">
+            <a class="play-btn" href="https://lovebirdsconsulting.com" aria-label="Play Dog Walker Pro now">Play now</a>
+            <a class="gh-link" href="https://github.com/pacificpelican/dog-walker-pro" title="Dog Walker Pro on GitHub" aria-label="Dog Walker Pro on GitHub">🐙</a>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <svg class="game-logo" viewBox="0 0 64 64" role="img" aria-label="Coyote Pack logo">
+            <defs>
+              <linearGradient id="cpBg" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0" stop-color="#7c2d12" />
+                <stop offset="1" stop-color="#f59e0b" />
+              </linearGradient>
+            </defs>
+            <rect width="64" height="64" rx="14" fill="url(#cpBg)" />
+            <circle cx="46" cy="16" r="8" fill="#fef3c7" fill-opacity=".9" />
+            <path d="M0 52 L16 34 L28 46 L42 30 L64 52 V64 H0Z" fill="#431407" fill-opacity=".55" />
+            <path d="M18 56 L18 34 L24 40 L32 38 L40 40 L46 34 L46 56 L38 50 L32 54 L26 50Z" fill="#1c1917" />
+            <path d="M18 34 L21 24 L26 36Z M46 34 L43 24 L38 36Z" fill="#1c1917" />
+            <circle cx="27" cy="43" r="1.6" fill="#fde047" />
+            <circle cx="37" cy="43" r="1.6" fill="#fde047" />
+          </svg>
+          <div class="game-body">
+            <h3>Coyote Pack</h3>
+            <p>Lead a pack of coyotes through the desert night in this free browser game.</p>
+          </div>
+          <div class="game-actions">
+            <!-- TODO: replace with the Coyote Pack play URL once known -->
+            <a class="play-btn" href="https://github.com/pacificpelican/coyote-pack" aria-label="Play Coyote Pack now">Play now</a>
+            <a class="gh-link" href="https://github.com/pacificpelican/coyote-pack" title="Coyote Pack on GitHub" aria-label="Coyote Pack on GitHub">🐙</a>
+          </div>
+        </article>
+
+        <article class="game-card">
+          <svg class="game-logo" viewBox="0 0 64 64" role="img" aria-label="Coffee Craft logo">
+            <defs>
+              <linearGradient id="ccBg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#a855f7" />
+                <stop offset="1" stop-color="#be185d" />
+              </linearGradient>
+            </defs>
+            <rect width="64" height="64" rx="14" fill="url(#ccBg)" />
+            <path d="M20 14 Q16 20 21 26 M30 12 Q26 19 31 25 M40 14 Q36 20 41 26" stroke="#fff" stroke-opacity=".7" stroke-width="2.5" fill="none" stroke-linecap="round" />
+            <path d="M14 30 H46 V40 Q46 52 30 52 Q14 52 14 40Z" fill="#fff7ed" />
+            <path d="M46 33 H51 Q57 33 57 39 Q57 45 50 45 H45" stroke="#fff7ed" stroke-width="3.5" fill="none" />
+            <path d="M16 33 H44 V38 Q44 42 30 42 Q16 42 16 38Z" fill="#78350f" />
+          </svg>
+          <div class="game-body">
+            <h3>Coffee Craft</h3>
+            <p>Brew, blend and serve your way to coffee-shop fame in this free browser game.</p>
+          </div>
+          <div class="game-actions">
+            <a class="play-btn" href="https://pacificpelican.us" aria-label="Play Coffee Craft now">Play now</a>
+            <a class="gh-link" href="https://github.com/pacificpelican/coffee-craft" title="Coffee Craft on GitHub" aria-label="Coffee Craft on GitHub">🐙</a>
+          </div>
+        </article>
+      </aside>
 
       <!-- Hidden control for keyboard users -->
       <div class="sr-only" id="planeStatus" aria-live="polite">
