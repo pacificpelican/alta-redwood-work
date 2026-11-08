@@ -44,6 +44,13 @@ article {
   background: linear-gradient(135deg, #d5f8e9, #d9f1ff);
 }
 
+.article-logo {
+  display: block;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
 .eyebrow {
   margin: 0 0 10px;
   color: #075c78;
