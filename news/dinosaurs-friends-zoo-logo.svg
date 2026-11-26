@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Dinosaurs and Friends Zoo</title>
+  <rect width="64" height="64" rx="14" fill="#bdebdc" />
+  <path d="M5 51Q16 45 26 50T59 49V64H5Z" fill="#76c893" />
+  <path d="M15 31Q11 13 32 14Q53 13 49 31L45 40H19Z" fill="#3b8f82" stroke="#23685f" stroke-width="2" />
+  <path d="M19 29L13 18Q12 16 15 17L25 23M45 29L51 18Q52 16 49 17L39 23" fill="#fff2cd" stroke="#23685f" stroke-width="1.5" stroke-linejoin="round" />
+  <path d="M18 31Q19 21 32 21Q45 21 46 31L44 43Q42 52 32 52Q22 52 20 43Z" fill="#78c9a9" stroke="#23685f" stroke-width="2" />
+  <path d="M32 29L28 38H36Z" fill="#fff2cd" />
+  <circle cx="24" cy="33" r="2" fill="#173f3b" />
+  <circle cx="40" cy="33" r="2" fill="#173f3b" />
+  <path d="M27 44Q32 47 37 44" fill="none" stroke="#23685f" stroke-width="2" stroke-linecap="round" />
+  <ellipse cx="49" cy="13" rx="7" ry="8" fill="#f8df65" stroke="#347e75" stroke-width="1.5" />
+  <path d="M44 12Q49 9 53 13M44 15Q49 12 53 16" fill="none" stroke="#347e75" stroke-width="1.5" />
+  <circle cx="51" cy="11" r="1" fill="#173f3b" />
+  <path d="M55 13L58 15L55 16Z" fill="#e99a44" />
+</svg>
